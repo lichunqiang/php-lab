@@ -7,6 +7,7 @@
 // | Author: Light <light-li@hotmail.com>
 // +----------------------------------------------------------------------
 namespace Light;
+require 'Psr4Loader.class.php';
 
 class Loader
 {
@@ -19,8 +20,10 @@ class Loader
 
   public static function start()
   {
-    spl_autoload_register('Light\Loader::autoload');
-
+    //spl_autoload_register('Light\Loader::autoload');
+    $loader = new \Psr4AutoloaderClass();
+    $loader->register();
+    $loader->addNamespace('Light', 'E:\git\php-lab\namespace\Light');
     //and do other interesting things
   }
   /**
