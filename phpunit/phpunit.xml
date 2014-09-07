@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit colors="false"
+		 bootstrap="vendor/autoload.php">
+	<php>
+		<var name="author" value="Light" />
+	</php>
+	<testsuites>
+		<!-- <testsuite name="common">
+			<directory>tests/Common</directory>
+		</testsuite> -->
+		<!-- <testsuite name='database'>
+			<directory suffix='Test.php'>tests/Database</directory>
+		</testsuite> -->
+		<testsuite name="test File">
+			<directory>tests/File</directory>
+			<exclude>tests/File/VFileTest.php</exclude>
+			<exclude>tests/File/fixtures/ExcludeTest.php</exclude>
+		</testsuite>
+		<testsuite name="Stub test">
+			<directory>tests/Stub</directory>
+			<exclude>tests/Stub/fixtures</exclude>
+		</testsuite>
+	</testsuites>
+</phpunit>

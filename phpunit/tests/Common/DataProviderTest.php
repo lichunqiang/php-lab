@@ -1,6 +1,6 @@
 <?php
-	require 'vendor/autoload.php';
-	class DataTest extends \PHPUnit_Framework_TestCase
+
+	class DataProviderTest extends \PHPUnit_Framework_TestCase
 	{
 		/**
 		 * @dataProvider additionProvider

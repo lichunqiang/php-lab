@@ -1,0 +1,9 @@
+2014-08-29 09:19:04 
+ WARNING 
+ foo [] {"dummy":"Hello world"}
+2014-08-29 09:19:04 
+ ERROR 
+ bar [] {"dummy":"Hello world"}
+2014-08-29 09:19:04 
+ INFO 
+ this is info {"name":"light"} {"dummy":"Hello world"}

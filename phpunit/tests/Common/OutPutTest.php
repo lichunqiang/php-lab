@@ -1,6 +1,6 @@
 <?php
-	require 'vendor/autoload.php';
-	class TestOutPut extends \PHPUnit_Framework_TestCase
+
+	class OutPutTest extends \PHPUnit_Framework_TestCase
 	{
 		public function testExpectFooActualFoo()
 		{

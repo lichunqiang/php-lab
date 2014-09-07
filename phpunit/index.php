@@ -1,42 +1,30 @@
 <?php
 	require 'vendor/autoload.php';
-	class MockTest extends \PHPUnit_Framework_TestCase
-	{
-		public function testPushAndPop()
-		{
-			$stack = array();
-			$this->assertEquals(0, count($stack));
-		}
 
-		// test dependencies
+	use Monolog\Logger;
+	use Monolog\Handler\StreamHandler;
+	use Monolog\Handler\FirePHPHandler;
+	use Monolog\Formatter;
 
+	// the default date format is "Y-m-d H:i:s"
+	$dateFormat = "Y n j, g:i a";
+	// the default output format is "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n"
+	$output = "%datetime% \n\r %level_name% \n\r %message% %context% %extra%\n";
 
-		public function testEmpty()
-		{
-			$stack = array();
-			$this->assertEmpty($stack, 'Stack should empty array');
-			$this->assertFalse(empty($stack), 'empty $stack should true');
-			return $stack;
-		}
+	$formatter = new Formatter\LineFormatter($output);
 
-		/**
-		 * @depends testEmpty
-		 */
-		public function testPush(array $stack)
-		{
-			array_push($stack, 'foo');
-			$this->assertEquals('foo', $stack[count($stack) - 1], 'Should equal foo');
-			$this->assertNotEmpty($stack, 'Stack should not empty');
+	$stream = new StreamHandler('./test.log', Logger::DEBUG);
+	$stream->setFormatter($formatter);
 
-			return $stack;
-		}
+	$log = new Logger('ecdarwin');
+	$log->pushHandler($stream);
+	//$log->pushHandler(new FirePHPHandler());
 
-		/**
-		 * @depends testPush
-		 */
-		public function testPop(array $stack)
-		{
-			$this->assertEquals('foo', array_pop($stack), 'Pop value should equal foo');
-			$this->assertEmpty($stack, 'Now stack is empty');
-		}
-	}
+	$log->pushProcessor(function($record){
+		$record['extra']['dummy'] = 'Hello world';
+		return $record;
+	});
+
+	$log->addWarning('foo');
+	$log->addError('bar');
+	$log->addInfo('this is info', array('name' => 'light'));
