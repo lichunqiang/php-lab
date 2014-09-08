@@ -15,9 +15,17 @@ $ phpunit index.php
 
  每个文件都展示`phpunit`的使用方法
 
- ## Knowlage
+## Knowlage
 
-> 当 PHPUnit 命令行测试执行器指向一个目录时，它会在目录下查找 *Test.php 文件。
+> 当 PHPUnit 命令行测试执行器指向一个目录时，它默认会在目录下查找 *Test.php 文件。
+
+此项也可以进行更改
+
+```
+<testsuite name='database'>
+	<directory suffix='_test.php'>tests/Database</directory>
+</testsuite>
+```
 
 ### 只运行每个测试用例类声明的测试
 
