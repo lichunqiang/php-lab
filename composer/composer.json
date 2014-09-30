@@ -3,7 +3,11 @@
 		"phpunit/phpunit": "4.2.*"
 	},
 	"require": {
-		"monolog/monolog": "*"
+		"monolog/monolog": "*",
+        "swiftmailer/swiftmailer": "@stable",
+        "guzzlehttp/guzzle": "4.*",
+        "cocur/slugify":"@stable",
+        "codeguy/upload": "*"
 	},
     "autoload":
     {
@@ -15,5 +19,12 @@
     "config": {
         "vendor-dir": "vendors",
         "autoloader-suffix": ""
-    }
+    },
+    "repositories": [
+        { "packagist": false },
+        {
+            "type": "composer",
+            "url": "http://218.244.132.204/proxy/packagist"
+        }
+    ]
 }
